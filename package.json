@@ -8,7 +8,8 @@
     "start": "ts-node src/index.ts",
     "dev": "nodemon src/index.ts",
     "devFrontend": "node esbuild.js --watch",
-    "build": "node esbuild.js --minify"
+    "build": "node esbuild.js --minify",
+    "postinstall": "node esbuild.js --minify"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.3",
