@@ -13,7 +13,7 @@ export default async function sendConfirmationEmail(to: string, token: string) {
       from: 'noreply@liftpad.org',
       subject: 'LiftPad - Activate your account!',
       text: `Visit the link below to activate your account\nhttps://${process.env.ROOT_URL}/api/confirm/${token}`,
-      html: `<p>Visit the link below to activate your account</p><p><a href="${process.env.ROOT_URL}/api/confirm/${token}">${process.env.ROOT_URL}/confirm/${token}</a></p>`,
+      html: `<p>Visit the link below to activate your account</p><p><a href="${process.env.ROOT_URL}/api/confirm/${token}">${process.env.ROOT_URL}/api/confirm/${token}</a></p>`,
     }
 
     try {
