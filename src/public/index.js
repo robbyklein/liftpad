@@ -27948,6 +27948,21 @@
     }
   }
 
+  // src/frontend/modules/WorkoutsWelcome.tsx
+  var import_react12 = __toESM(require_react());
+
+  // src/frontend/components/Box.tsx
+  var import_classnames4 = __toESM(require_classnames());
+  var import_react11 = __toESM(require_react());
+  function Box({ className, children, padded = true, to }) {
+    const cls = (0, import_classnames4.default)("box", { "box--padded": padded }, className);
+    if (to) {
+      return /* @__PURE__ */ import_react11.default.createElement(Link, { to, className: cls }, children);
+    } else {
+      return /* @__PURE__ */ import_react11.default.createElement("div", { className: cls }, children);
+    }
+  }
+
   // src/frontend/helpers/getWorkoutDay.ts
   function getWorkoutDay() {
     const startingDate = new Date(2023, 8, 16);
@@ -27965,21 +27980,6 @@
       workout: currentWorkout,
       round: currentRound
     };
-  }
-
-  // src/frontend/modules/WorkoutsWelcome.tsx
-  var import_react12 = __toESM(require_react());
-
-  // src/frontend/components/Box.tsx
-  var import_classnames4 = __toESM(require_classnames());
-  var import_react11 = __toESM(require_react());
-  function Box({ className, children, padded = true, to }) {
-    const cls = (0, import_classnames4.default)("box", { "box--padded": padded }, className);
-    if (to) {
-      return /* @__PURE__ */ import_react11.default.createElement(Link, { to, className: cls }, children);
-    } else {
-      return /* @__PURE__ */ import_react11.default.createElement("div", { className: cls }, children);
-    }
   }
 
   // src/frontend/helpers/formatDate.ts
@@ -28064,12 +28064,9 @@
   // src/frontend/pages/Workouts.tsx
   function Workouts() {
     const s = workoutsStore_default();
-    const workout = getWorkoutDay();
     (0, import_react16.useEffect)(() => {
-      console.log("init");
       s.init();
       return () => {
-        console.log("deinit");
         s.reset();
       };
     }, []);

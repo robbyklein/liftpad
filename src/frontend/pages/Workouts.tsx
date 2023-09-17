@@ -5,25 +5,16 @@ import EmptyPage from '../modules/EmptyPage'
 import { Link } from 'react-router-dom'
 import PlusIcon from '../svg/PlusIcon'
 import IconButton from '../components/IconButton'
-import formatDate from '../helpers/formatDate'
-import WorkoutRow from '../modules/WorkoutRow'
-import Width from '../components/Width'
-import getWorkoutDay from '../helpers/getWorkoutDay'
-import Box from '../components/Box'
 import WorkoutsWelcome from '../modules/WorkoutsWelcome'
 import WorkoutsWorkouts from '../modules/WorkoutsWorkouts'
 
 export default function Workouts() {
   const s = workoutsStore()
-  const workout = getWorkoutDay()
 
   useEffect(() => {
-    console.log('init')
     s.init()
 
     return () => {
-      console.log('deinit')
-
       s.reset()
     }
   }, [])
