@@ -36,6 +36,4 @@ app.get('*', pagesController.index)
 app.use(errorHandler)
 
 // Start server
-if (process.env.NODE_ENV !== 'test') {
-  app.listen(Number(process.env.PORT))
-}
+app.listen(process.env.PORT)
