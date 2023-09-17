@@ -1,7 +1,6 @@
 // Dependencies
 import express from 'express'
 import cookieParser from 'cookie-parser'
-import cors from 'cors'
 import morgan from 'morgan'
 import usersController from './controllers/usersController'
 import errorHandler from './middleware/errorHandler'
@@ -10,13 +9,14 @@ import requireAuth from './middleware/requireAuth'
 import workoutsController from './controllers/workoutsController'
 import pagesController from './controllers/pagesController'
 import exercisesController from './controllers/exercisesController'
+
 export const app = express()
 
 // Before middleware
 app.use(express.static('src/public'))
 app.use(express.json())
 app.use(cookieParser())
-// app.use(morgan('combined'))
+app.use(morgan('combined'))
 
 // Routing
 app.post('/api/signup', usersController.create)

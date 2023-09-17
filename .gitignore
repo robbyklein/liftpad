@@ -170,3 +170,4 @@ dist
 
 src/data/exercises.json
 .env
+.envrc

@@ -1,5 +1,5 @@
-import esbuild from 'esbuild'
-import { sassPlugin } from 'esbuild-sass-plugin'
+const esbuild = require('esbuild')
+const { sassPlugin } = require('esbuild-sass-plugin')
 
 esbuild
   .context({

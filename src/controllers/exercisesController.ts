@@ -9,11 +9,10 @@ const index = async (req: Request, res: Response, next: NextFunction) => {
     // Calculate the offset for pagination
     const offset = (Number(page) - 1) * pageSize
 
-    const whereClause = query
+    const whereClause: any = query
       ? {
           title: {
             contains: query as string,
-            // @ts-ignore
             mode: 'insensitive',
           },
         }

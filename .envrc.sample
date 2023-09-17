@@ -1,0 +1,6 @@
+export PORT=3000
+export DATABASE_URL="postgresql://123:123@localhost:5432/123"
+export JWT_SECRET=123
+export SENDGRID_API_KEY=Sfewferf
+export ROOT_URL=http://localhost:3000
+export TEST_EMAIL=hello@gmail.com
