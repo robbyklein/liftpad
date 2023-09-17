@@ -1,0 +1,28 @@
+$bg: #f2f2f2;
+$cards: #fff;
+$border: rgba(0, 0, 0, 0.1);
+$fieldBorder: rgba(0, 0, 0, 0.2);
+$darkText: #0c0c0c;
+$text: #333333;
+$lightText: #606060;
+$xlightText: #9a9a9a;
+
+$primary: #5f6cee;
+$primaryHover: #5560d5;
+$primaryText: #fff;
+
+$danger: #721c24;
+$dangerBg: #f8d7da;
+$dangerBorder: #f5c6cb;
+
+$success: #155724;
+$successBg: #d4edda;
+$successBorder: #c3e6cb;
+
+$font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+  'Open Sans', 'Helvetica Neue', sans-serif;
+
+$largebp: 960px;
+
+$fadeOff: left 0s 0.2s, opacity 0.2s;
+$fadeOn: left 0s, opacity 0.2s;

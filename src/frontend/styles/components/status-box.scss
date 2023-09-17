@@ -1,0 +1,18 @@
+.error-box {
+  padding: 12px;
+  font-size: 12px;
+  border-radius: 4px;
+  text-align: center;
+
+  &--danger {
+    background-color: $dangerBg;
+    color: $danger;
+    border: 1px solid $dangerBorder;
+  }
+
+  &--success {
+    background-color: $successBg;
+    color: $success;
+    border: 1px solid $successBorder;
+  }
+}

@@ -1,0 +1,84 @@
+.exercise-browser {
+  position: fixed;
+  top: 0;
+  left: -9999px;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 90;
+  opacity: 0;
+  transition: $fadeOff;
+
+  &--active {
+    left: 0;
+    opacity: 1;
+    transition: $fadeOn;
+  }
+
+  &__drawer {
+    width: 90%;
+    background: $cards;
+    height: 100%;
+    margin-left: auto;
+    overflow-y: auto;
+    transition: 0.4s transform;
+    transform: translateX(100%);
+  }
+
+  &--active &__drawer {
+    transform: none;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $border;
+    height: 60px;
+    padding: 0 24px;
+  }
+
+  &__heading {
+    font-size: 20px;
+  }
+
+  &__close {
+    width: 24px;
+    height: 24px;
+  }
+
+  &__search {
+    position: sticky;
+    top: 0;
+    background: $cards;
+
+    input {
+      line-height: 60px;
+      padding: 0 24px;
+      border-bottom: 1px solid $border;
+      font-size: 16px;
+    }
+  }
+
+  &__loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 30px;
+    width: 44px;
+    margin-left: 5vw;
+    color: $primary;
+    animation: 1s loadingSpin infinite linear;
+  }
+
+  &__loading2 {
+    padding: 24px;
+    color: $primary;
+
+    svg {
+      margin: 0 auto;
+      animation: 1s rotate infinite linear;
+    }
+  }
+}

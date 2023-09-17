@@ -1,0 +1,31 @@
+.workout-row {
+  display: flex;
+  align-items: center;
+  background: $cards;
+  border: 1px solid $border;
+  padding: 12px;
+  border-radius: 8px;
+
+  &__text {
+    flex: 1;
+    display: block;
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 14px;
+    color: $xlightText;
+  }
+
+  svg {
+    color: $xlightText;
+    transition: 0.2s color;
+  }
+
+  &:hover svg {
+    color: $darkText;
+  }
+}

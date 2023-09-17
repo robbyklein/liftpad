@@ -1,0 +1,21 @@
+.field {
+  label {
+    font-size: 14px;
+    margin-bottom: 3px;
+    display: inline-block;
+  }
+
+  input[type='text'],
+  input[type='email'],
+  input[type='password'] {
+    border: 1px solid $fieldBorder;
+    line-height: 46px;
+    padding: 0 16px;
+    border-radius: 4px;
+    color: $darkText;
+
+    &::placeholder {
+      color: $lightText;
+    }
+  }
+}

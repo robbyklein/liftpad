@@ -1,0 +1,32 @@
+.auth-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 40px);
+  max-width: 360px;
+  border: 1px solid $border;
+  padding: 32px;
+  border-radius: 8px;
+  background: $cards;
+
+  &__heading {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  &__links {
+    text-align: center;
+    margin-top: 12px;
+
+    a {
+      font-size: 12px;
+      color: $darkText;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

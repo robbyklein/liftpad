@@ -1,0 +1,35 @@
+.workouts-welcome {
+  h2 {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: $xlightText;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+
+  &__flex {
+    display: flex;
+  }
+
+  &__column {
+    flex: 1;
+    padding: 12px 16px;
+  }
+
+  &__column + &__column {
+    border-left: 1px solid $border;
+  }
+
+  h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: $xlightText;
+    letter-spacing: 1px;
+  }
+
+  p {
+    font-size: 16px;
+    color: $darkText;
+    font-weight: 600;
+  }
+}

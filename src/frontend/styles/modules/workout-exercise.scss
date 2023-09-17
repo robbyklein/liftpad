@@ -1,0 +1,116 @@
+.workout-exercise {
+  border-bottom: 1px solid $border;
+  border-radius: 8px;
+  background: $cards;
+  overflow: hidden;
+  border: 1px solid $border;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px;
+    border-bottom: 1px solid $border;
+  }
+
+  &__header-image {
+    width: 50px;
+
+    img {
+      border-radius: 4px;
+    }
+  }
+
+  &__header-text {
+    flex: 1;
+
+    h3 {
+      font-size: 16px;
+    }
+
+    p {
+      font-size: 14px;
+      color: $text;
+    }
+  }
+
+  &__header-close {
+    button {
+      color: $xlightText;
+      transition: 0.2s color;
+      width: 20px;
+      cursor: pointer;
+
+      &:hover {
+        color: $darkText;
+      }
+    }
+  }
+
+  &__body {
+    padding: 12px;
+  }
+
+  &__set {
+    & + & {
+      margin-top: 12px;
+    }
+
+    h4 {
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+  }
+
+  &__set-flex {
+    display: flex;
+    gap: 16px;
+
+    select {
+      flex: 1;
+      border-radius: 4px;
+      border: 1px solid $border;
+      padding: 0 16px;
+      line-height: 32px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 -960 960 960' width='24'%3E%3Cpath d='M480-341.912 248.911-573.001h462.178L480-341.912Z'/%3E%3C/svg%3E");
+      background-position: right 4px center;
+      background-repeat: no-repeat;
+      background-size: 18px;
+    }
+
+    button {
+      color: $xlightText;
+      width: 16px;
+      transition: 0.2s color;
+
+      &:hover {
+        color: $darkText;
+      }
+    }
+  }
+
+  &__add {
+    padding: 0 12px 12px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    button {
+      line-height: 32px;
+      color: $primaryText;
+      background: $primary;
+      padding: 0 12px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      border-radius: 4px;
+      width: 100%;
+      transition: 0.2s background-color;
+    }
+
+    &:hover button {
+      background-color: $primaryHover;
+    }
+  }
+}

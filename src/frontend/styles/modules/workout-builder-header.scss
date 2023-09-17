@@ -1,0 +1,21 @@
+.workout-builder-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h2 {
+    font-size: 21px;
+  }
+
+  input {
+    display: inline-block;
+    width: 160px;
+    font-size: 16px;
+    font-family: $font;
+    border-radius: 4px;
+    line-height: 32px;
+    padding: 0 6px 0 8px;
+    background-color: $cards;
+    border: 1px solid $border;
+  }
+}

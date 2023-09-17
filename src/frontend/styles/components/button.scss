@@ -1,0 +1,55 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  color: $primaryText;
+  background-color: $primary;
+  border: 1px solid $primary;
+
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 46px;
+  transition: 0.2s border-color, 0.2s background-color;
+
+  &:hover {
+    background-color: $primaryHover;
+    border-color: $primaryHover;
+  }
+
+  &--full-width {
+    display: flex;
+    width: 100%;
+  }
+
+  &--small {
+    line-height: 30px;
+    font-size: 13px;
+    padding: 0 12px;
+  }
+
+  &--black {
+    color: $primaryText;
+    background-color: $darkText;
+    border: 1px solid $darkText;
+
+    &:hover {
+      color: $primaryText;
+      background-color: $darkText;
+      border: 1px solid $darkText;
+    }
+  }
+
+  &--danger-line {
+    color: #c5280c;
+    background-color: transparent;
+    border: 1px solid #c5280c;
+
+    &:hover {
+      color: white;
+      background-color: #c5280c;
+      border: 1px solid #c5280c;
+    }
+  }
+}

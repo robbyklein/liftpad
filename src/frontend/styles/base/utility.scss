@@ -1,0 +1,47 @@
+.space-y-3 {
+  & > * + * {
+    margin-top: 12px;
+  }
+}
+
+.space-y-6 {
+  & > * + * {
+    margin-top: 24px;
+  }
+}
+
+.p-3 {
+  padding: 12px;
+}
+
+.p-6 {
+  padding: 24px;
+}
+
+.py-3 {
+  padding: 12px 0;
+}
+
+.py-6 {
+  padding: 24px 0;
+}
+
+.mt-3 {
+  margin-top: 12px;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.border-l {
+  border-left: 1px solid $border;
+}
+
+.justify-between {
+  justify-content: space-between;
+}

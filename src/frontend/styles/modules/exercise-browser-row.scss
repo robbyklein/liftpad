@@ -1,0 +1,30 @@
+.exercise-browser-row {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-bottom: 1px solid $border;
+  gap: 16px;
+
+  &__image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+
+    img {
+      border-radius: 4px;
+    }
+  }
+
+  &__text {
+    flex: 1;
+
+    h3 {
+      font-size: 16px;
+    }
+
+    p {
+      font-size: 14px;
+      color: $lightText;
+    }
+  }
+}

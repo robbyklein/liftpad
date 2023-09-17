@@ -1,0 +1,21 @@
+.icon-button {
+  width: 32px;
+  height: 32px;
+  background: $primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $primaryText;
+  border-radius: 4px;
+  font-weight: 900;
+  line-height: 1;
+  transition: 0.2s background-color;
+
+  &:hover {
+    background-color: $primaryHover;
+  }
+
+  svg {
+    width: 20px;
+  }
+}
