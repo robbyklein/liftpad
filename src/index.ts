@@ -9,6 +9,7 @@ import requireAuth from './middleware/requireAuth'
 import workoutsController from './controllers/workoutsController'
 import pagesController from './controllers/pagesController'
 import exercisesController from './controllers/exercisesController'
+import requireHTTPS from './middleware/requireHTTPS'
 
 export const app = express()
 
@@ -17,6 +18,7 @@ app.use(express.static('src/public'))
 app.use(express.json())
 app.use(cookieParser())
 app.use(morgan('combined'))
+app.use(requireHTTPS)
 
 // Routing
 app.post('/api/signup', usersController.create)
