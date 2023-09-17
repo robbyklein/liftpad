@@ -90,9 +90,20 @@ export default function WorkoutBuilder() {
                   Delete workout
                 </Button>
 
-                <Button color="primary" type="button" onClick={handleSave} small>
-                  Save
-                </Button>
+                <div className="inline-flex gap-3">
+                  <Button
+                    color="primary-line"
+                    type="button"
+                    onClick={() => s.setBrowserOpen(true)}
+                    small
+                  >
+                    Add exercise
+                  </Button>
+
+                  <Button color="primary" type="button" onClick={handleSave} small>
+                    Save
+                  </Button>
+                </div>
               </footer>
             )}
           </>

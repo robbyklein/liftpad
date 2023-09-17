@@ -9,7 +9,7 @@ interface IProps {
   fullWidth?: boolean
   small?: boolean
   onClick?(): void
-  color?: 'primary' | 'black' | 'danger-line'
+  color?: 'primary' | 'black' | 'danger-line' | 'primary-line'
 }
 
 export default function Button({

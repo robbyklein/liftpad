@@ -52,4 +52,16 @@
       border: 1px solid #c5280c;
     }
   }
+
+  &--primary-line {
+    color: $primary;
+    background-color: transparent;
+    border: 1px solid $primary;
+
+    &:hover {
+      color: white;
+      background-color: $primaryHover;
+      border: 1px solid $primaryHover;
+    }
+  }
 }
