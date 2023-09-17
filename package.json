@@ -11,6 +11,17 @@
     "build": "node esbuild.js --minify"
   },
   "devDependencies": {
+    "axios": "^1.5.0",
+    "esbuild": "^0.19.2",
+    "esbuild-sass-plugin": "^2.15.0",
+    "nodemon": "^3.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0",
+    "supertest": "^6.3.3",
+    "zustand": "^4.4.1"
+  },
+  "dependencies": {
     "@types/bcryptjs": "^2.4.3",
     "@types/body-parser": "^1.19.2",
     "@types/classnames": "^2.3.1",
@@ -24,17 +35,6 @@
     "@types/react-dom": "^18.2.7",
     "@types/supertest": "^2.0.12",
     "@types/uuid": "^9.0.3",
-    "axios": "^1.5.0",
-    "esbuild": "^0.19.2",
-    "esbuild-sass-plugin": "^2.15.0",
-    "nodemon": "^3.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.15.0",
-    "supertest": "^6.3.3",
-    "zustand": "^4.4.1"
-  },
-  "dependencies": {
     "@prisma/client": "5.2.0",
     "@sendgrid/mail": "^7.7.0",
     "bcryptjs": "^2.4.3",
