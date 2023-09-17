@@ -78,6 +78,7 @@ select {
   outline: none;
   display: block;
   font-size: 16px;
+  color: #0c0c0c;
 }
 input,
 textarea,
@@ -337,6 +338,9 @@ button {
   align-items: center;
   gap: 8px;
 }
+.page {
+  padding-bottom: 24px;
+}
 .empty-page {
   text-align: center;
   padding: 48px 0;
@@ -392,6 +396,10 @@ button {
 .exercise-browser__close {
   width: 24px;
   height: 24px;
+  color: #9a9a9a;
+}
+.exercise-browser__close:hover {
+  color: #0c0c0c;
 }
 .exercise-browser__search {
   position: sticky;
@@ -632,5 +640,8 @@ button {
   padding: 0 6px 0 8px;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.page {
+  padding-bottom: 24px;
 }
 /*# sourceMappingURL=style.css.map */

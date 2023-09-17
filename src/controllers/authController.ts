@@ -28,8 +28,8 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
 
     // Store it in an httponly cookie
     res.cookie('Authorization', token, {
-      httpOnly: true,
-      secure: true,
+      httpOnly: false,
+      secure: process.env.NODE_ENV === 'production',
       maxAge: 2592000000, // 30 days
       path: '/',
       sameSite: 'strict',

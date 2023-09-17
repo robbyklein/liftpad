@@ -45,6 +45,11 @@
   &__close {
     width: 24px;
     height: 24px;
+    color: $xlightText;
+
+    &:hover {
+      color: $darkText;
+    }
   }
 
   &__search {
