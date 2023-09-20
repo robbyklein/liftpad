@@ -2,7 +2,7 @@ import React from 'react'
 import Box from '../components/Box'
 import getWorkoutDay from '../helpers/getWorkoutDay'
 import workoutsStore from '../stores/workoutsStore'
-import formatDate from '../helpers/formatDate'
+import formatLocalDate from '../helpers/formatLocalDate'
 
 export default function WorkoutsWelcome() {
   const workout = getWorkoutDay()
@@ -11,7 +11,7 @@ export default function WorkoutsWelcome() {
 
   return (
     <div className="workouts-welcome">
-      <h2>{formatDate(today)}</h2>
+      <h2>{formatLocalDate(today)}</h2>
       <Box padded={false} className="workouts-welcome__flex">
         <div className="workouts-welcome__column">
           <h3>Day</h3>

@@ -27983,6 +27983,58 @@
     };
   }
 
+  // src/frontend/helpers/formatLocalDate.ts
+  function formatLocalDate(dateInput) {
+    let date;
+    if (dateInput instanceof Date) {
+      date = dateInput;
+    } else if (typeof dateInput === "string") {
+      date = new Date(dateInput);
+    } else {
+      throw new Error("Invalid date input");
+    }
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
+    const day = date.getDate();
+    const monthIndex = date.getMonth();
+    const year = date.getFullYear();
+    let suffix = "th";
+    if (day === 1 || day === 21 || day === 31) {
+      suffix = "st";
+    } else if (day === 2 || day === 22) {
+      suffix = "nd";
+    } else if (day === 3 || day === 23) {
+      suffix = "rd";
+    }
+    return `${months[monthIndex]} ${day}${suffix}, ${year}`;
+  }
+
+  // src/frontend/modules/WorkoutsWelcome.tsx
+  function WorkoutsWelcome() {
+    const workout = getWorkoutDay();
+    const streak = workoutsStore_default((s) => s.streak);
+    const today = /* @__PURE__ */ new Date();
+    return /* @__PURE__ */ import_react12.default.createElement("div", { className: "workouts-welcome" }, /* @__PURE__ */ import_react12.default.createElement("h2", null, formatLocalDate(today)), /* @__PURE__ */ import_react12.default.createElement(Box, { padded: false, className: "workouts-welcome__flex" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "workouts-welcome__column" }, /* @__PURE__ */ import_react12.default.createElement("h3", null, "Day"), /* @__PURE__ */ import_react12.default.createElement("p", null, workout.workout)), /* @__PURE__ */ import_react12.default.createElement("div", { className: "workouts-welcome__column" }, /* @__PURE__ */ import_react12.default.createElement("h3", null, "Round"), /* @__PURE__ */ import_react12.default.createElement("p", null, workout.round)), /* @__PURE__ */ import_react12.default.createElement("div", { className: "workouts-welcome__column" }, /* @__PURE__ */ import_react12.default.createElement("h3", null, "Streak"), /* @__PURE__ */ import_react12.default.createElement("p", null, streak))));
+  }
+
+  // src/frontend/modules/WorkoutsWorkouts.tsx
+  var import_react15 = __toESM(require_react());
+
+  // src/frontend/modules/WorkoutRow.tsx
+  var import_react14 = __toESM(require_react());
+
   // src/frontend/helpers/formatDate.ts
   function formatDate(dateInput) {
     let date;
@@ -28020,20 +28072,6 @@
     }
     return `${months[monthIndex]} ${day}${suffix}, ${year}`;
   }
-
-  // src/frontend/modules/WorkoutsWelcome.tsx
-  function WorkoutsWelcome() {
-    const workout = getWorkoutDay();
-    const streak = workoutsStore_default((s) => s.streak);
-    const today = /* @__PURE__ */ new Date();
-    return /* @__PURE__ */ import_react12.default.createElement("div", { className: "workouts-welcome" }, /* @__PURE__ */ import_react12.default.createElement("h2", null, formatDate(today)), /* @__PURE__ */ import_react12.default.createElement(Box, { padded: false, className: "workouts-welcome__flex" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "workouts-welcome__column" }, /* @__PURE__ */ import_react12.default.createElement("h3", null, "Day"), /* @__PURE__ */ import_react12.default.createElement("p", null, workout.workout)), /* @__PURE__ */ import_react12.default.createElement("div", { className: "workouts-welcome__column" }, /* @__PURE__ */ import_react12.default.createElement("h3", null, "Round"), /* @__PURE__ */ import_react12.default.createElement("p", null, workout.round)), /* @__PURE__ */ import_react12.default.createElement("div", { className: "workouts-welcome__column" }, /* @__PURE__ */ import_react12.default.createElement("h3", null, "Streak"), /* @__PURE__ */ import_react12.default.createElement("p", null, streak))));
-  }
-
-  // src/frontend/modules/WorkoutsWorkouts.tsx
-  var import_react15 = __toESM(require_react());
-
-  // src/frontend/modules/WorkoutRow.tsx
-  var import_react14 = __toESM(require_react());
 
   // src/frontend/svg/ChevronRightIcon.tsx
   var import_react13 = __toESM(require_react());
