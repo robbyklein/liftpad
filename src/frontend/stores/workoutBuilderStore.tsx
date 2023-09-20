@@ -3,7 +3,10 @@ import axios from 'axios'
 import { api_routes } from '../constants'
 import { IExercise, IExerciseWithMaxes, IMax, IWorkout, IWorkoutWithNested } from '../types'
 import arrayToMapById from '../helpers/arrayToMapById'
-import createTimestamp from '../helpers/createTimestamp'
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+
+dayjs.extend(utc)
 
 type Store = {
   ready: boolean
@@ -31,7 +34,7 @@ type Store = {
 
 const emptyWorkout = {
   title: '',
-  performed: createTimestamp(),
+  performed: dayjs.utc().format(),
   exercises: [],
 }
 
@@ -41,7 +44,7 @@ const defaultState = {
   ready: false,
   workout: emptyWorkout,
   exercises: {},
-  performed: createTimestamp(),
+  performed: dayjs.utc().format(),
   browserOpen: false,
 }
 
@@ -106,8 +109,6 @@ export const workoutBuilderStore = create<Store>((set, get) => ({
 
     const res = await axios.post(api_routes.exercise_maxes, { exerciseIds: [exercise.id] })
     get().addMaxesToExercises(res.data)
-
-    console.log(res)
   },
 
   removeExercise: (exerciseIndex) => {

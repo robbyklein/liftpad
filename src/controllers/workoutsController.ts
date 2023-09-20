@@ -144,35 +144,30 @@ const index = async (requ: Request, res: Response, next: NextFunction) => {
     const totalPages = Math.ceil(totalWorkouts / perPage)
 
     const results: any = await prisma.$queryRaw`
-          WITH consecutive_days AS (
-          SELECT performed::DATE, 
-                LEAD(performed::DATE, 1) OVER (ORDER BY performed::DATE DESC) AS next_day,
-                LAG(performed::DATE, 1) OVER (ORDER BY performed::DATE DESC) AS prev_day
+      WITH consecutive_days AS (
+          SELECT performed::DATE,
+                LEAD(performed::DATE, 1) OVER (ORDER BY performed::DATE DESC) AS next_day
           FROM "Workout"
           WHERE "userId" = ${userId}
           ORDER BY performed::DATE DESC
       ),
+
       streaks AS (
           SELECT performed,
-                CASE 
-                  WHEN performed = current_date THEN 1
-                  WHEN performed = current_date - INTERVAL '1 day' THEN 1
-                  ELSE 0
-                END AS streak_start,
-                CASE 
-                  WHEN prev_day = performed - INTERVAL '1 day' THEN 1
-                  ELSE 0
+                CASE
+                    WHEN performed - next_day = 1 THEN 1
+                    ELSE 0
                 END AS is_consecutive
           FROM consecutive_days
       )
-      SELECT SUM(is_consecutive) + MAX(streak_start) AS current_streak
-      FROM (
-          SELECT *,
-                SUM(streak_start) OVER (ORDER BY performed DESC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS streak_count
-          FROM streaks
-      ) AS x
-      WHERE streak_count > 0;
 
+      SELECT COALESCE(MAX(streak_length), 0) AS current_streak FROM (
+          SELECT performed, 
+                SUM(is_consecutive) OVER (ORDER BY performed DESC ROWS BETWEEN CURRENT ROW AND 1 FOLLOWING) + 1 AS streak_length
+          FROM streaks
+          WHERE performed >= current_date - INTERVAL '2 days'
+      ) sub
+      WHERE streak_length > 1 OR (streak_length = 1 AND performed = current_date);
     `
 
     const streak = Number(results[0]?.current_streak ?? 0)

@@ -2,16 +2,16 @@ import React from 'react'
 import Box from '../components/Box'
 import getWorkoutDay from '../helpers/getWorkoutDay'
 import workoutsStore from '../stores/workoutsStore'
-import formatLocalDate from '../helpers/formatLocalDate'
+import dayjs from 'dayjs'
 
 export default function WorkoutsWelcome() {
   const workout = getWorkoutDay()
   const streak = workoutsStore((s) => s.streak)
-  const today = new Date()
+  const today = dayjs().format('MMMM D, YYYY')
 
   return (
     <div className="workouts-welcome">
-      <h2>{formatLocalDate(today)}</h2>
+      <h2>{today}</h2>
       <Box padded={false} className="workouts-welcome__flex">
         <div className="workouts-welcome__column">
           <h3>Day</h3>

@@ -1,7 +1,9 @@
 import React from 'react'
 import workoutBuilderStore from '../stores/workoutBuilderStore'
-import formatDateForInput from '../helpers/formatDateForInput'
-import createTimestamp from '../helpers/createTimestamp'
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+
+dayjs.extend(utc)
 
 export default function WorkoutBuilderHeader() {
   const changeField = workoutBuilderStore((s) => s.changeField)
@@ -9,8 +11,7 @@ export default function WorkoutBuilderHeader() {
   const id = workoutBuilderStore((s) => s.workout.id)
 
   const handleChange = (e: any) => {
-    const newDate = new Date(e.target.value)
-    changeField('performed', createTimestamp(newDate))
+    changeField('performed', dayjs(e.target.value).utc().format('YYYY-MM-DDTHH:mm:ss[Z]'))
   }
 
   return (
@@ -20,7 +21,7 @@ export default function WorkoutBuilderHeader() {
         type="date"
         name="performed"
         onChange={handleChange}
-        value={formatDateForInput(performed)}
+        value={dayjs(performed).format('YYYY-MM-DD')}
       />
     </header>
   )
