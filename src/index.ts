@@ -31,6 +31,7 @@ app.post('/api/workouts', requireAuth, workoutsController.create)
 app.put('/api/workouts/:id', requireAuth, workoutsController.update)
 app.delete('/api/workouts/:id', requireAuth, workoutsController.destroy)
 app.get('/api/exercises', requireAuth, exercisesController.index)
+app.post('/api/exercises/max', requireAuth, exercisesController.max)
 
 app.get('*', pagesController.index)
 

@@ -1,5 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import prisma from '../initializers/prisma'
+import { RequestWithExtras } from '../types'
+import { Prisma } from '@prisma/client'
 
 const index = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -39,4 +41,27 @@ const index = async (req: Request, res: Response, next: NextFunction) => {
   }
 }
 
-export default { index }
+const max = async (requ: Request, res: Response, next: NextFunction) => {
+  const req = requ as RequestWithExtras
+
+  try {
+    const exerciseIds: number[] = req.body.exerciseIds
+
+    const results = await prisma.$queryRaw`
+      SELECT "exerciseId" as id,
+             MAX(CASE WHEN reps >= 1 THEN weight ELSE NULL END) AS maxFor1,
+            --  MAX(CASE WHEN reps >= 6 THEN weight ELSE NULL END) AS maxFor6,
+             MAX(CASE WHEN reps >= 8 THEN weight ELSE NULL END) AS maxFor8
+      FROM "Set"
+      WHERE "exerciseId" IN (${Prisma.join(exerciseIds)})
+      GROUP BY "exerciseId"
+    `
+
+    res.json(results)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: 'Failed to retrieve max weights.' })
+  }
+}
+
+export default { index, max }

@@ -4,7 +4,7 @@ export default function requireHTTPS(req: Request, res: Response, next: NextFunc
   if (
     !req.secure &&
     req.get('x-forwarded-proto') !== 'https' &&
-    process.env.NODE_ENV !== 'development'
+    process.env.NODE_ENV === 'production'
   ) {
     return res.redirect('https://' + req.get('host') + req.url)
   }

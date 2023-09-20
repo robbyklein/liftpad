@@ -483,8 +483,22 @@ button {
   font-size: 16px;
 }
 .workout-exercise__header-text p {
-  font-size: 14px;
+  font-size: 13px;
   color: #333333;
+}
+.workout-exercise__header-text p strong {
+  font-weight: 600;
+  color: #333333;
+}
+.workout-exercise__header-text-meta {
+  font-size: 13px;
+  color: #333333;
+  display: inline-flex;
+  align-items: center;
+}
+.workout-exercise__header-text-meta li + li:before {
+  content: "/";
+  margin: 0 5px;
 }
 .workout-exercise__header-close button {
   color: #9a9a9a;

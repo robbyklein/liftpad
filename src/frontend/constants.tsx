@@ -7,7 +7,7 @@ export const api_routes = {
   workouts_edit: (id: number) => `/api/workouts/${id}`,
   workouts_delete: (id: number) => `/api/workouts/${id}`,
   workouts_create: `/api/workouts`,
-
+  exercise_maxes: `/api/exercises/max`,
   exercises_index: '/api/exercises',
 }
 

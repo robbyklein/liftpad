@@ -10,10 +10,6 @@ const requireAuth = async (requ: Request, res: Response, next: NextFunction) => 
     // Try to get the token from the Authorization cookie
     const token = req.cookies?.Authorization
 
-    console.log('--------------')
-    console.log(req.cookies?.Authorization)
-    console.log('--------------')
-
     if (!token) throw new Error('No token provided')
 
     const decodedToken = jwt.decode(token)

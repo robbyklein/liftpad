@@ -36,6 +36,19 @@ export interface IExerciseWithNested extends IExercise {
   sets: ISet[]
 }
 
+export interface IExerciseWithMaxes extends IExercise {
+  maxfor1?: number
+  maxfor8?: number
+  // maxfor12?: number
+}
+
+export interface IMax {
+  id: number
+  maxfor1: number
+  maxfor8: number
+  // maxfor12: number
+}
+
 export type ISet = {
   id?: number
   weight: number

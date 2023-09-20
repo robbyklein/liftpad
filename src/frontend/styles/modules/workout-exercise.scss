@@ -29,8 +29,25 @@
     }
 
     p {
-      font-size: 14px;
+      font-size: 13px;
       color: $text;
+    }
+
+    p strong {
+      font-weight: 600;
+      color: $text;
+    }
+  }
+
+  &__header-text-meta {
+    font-size: 13px;
+    color: $text;
+    display: inline-flex;
+    align-items: center;
+
+    li + li:before {
+      content: '/';
+      margin: 0 5px;
     }
   }
 

@@ -15,7 +15,7 @@ export default function WorkoutBuilderHeader() {
 
   return (
     <header className="workout-builder-header">
-      <h2>{id ? 'New' : 'Edit'} Workout</h2>
+      <h2>{id ? 'Edit' : 'New'} Workout</h2>
       <input
         type="date"
         name="performed"

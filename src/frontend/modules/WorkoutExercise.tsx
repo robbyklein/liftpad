@@ -1,5 +1,5 @@
 import React from 'react'
-import { IExercise, IWorkoutExercise } from '../types'
+import { IExerciseWithMaxes, IWorkoutExercise } from '../types'
 import IconButton from '../components/IconButton'
 import XIcon from '../svg/XIcon'
 import workoutBuilderStore from '../stores/workoutBuilderStore'
@@ -7,7 +7,7 @@ import Button from '../components/Button'
 
 interface IProps {
   workoutExercise: IWorkoutExercise
-  exercise: IExercise
+  exercise: IExerciseWithMaxes
   index: number
 }
 
@@ -28,7 +28,18 @@ export default function WorkoutExercise({ workoutExercise, exercise, index }: IP
 
         <div className="workout-exercise__header-text">
           <h3>{exercise.title}</h3>
-          <p>{exercise.muscle}</p>
+          <p>
+            {exercise.maxfor1 || exercise.maxfor8 ? (
+              <>
+                <strong>Max: </strong>
+                {exercise.maxfor8 && <>{exercise.maxfor8}lbs (8 rep)</>}
+                {exercise.maxfor1 && exercise.maxfor8 && <> / </>}
+                {exercise.maxfor1 && <>{exercise.maxfor1}lbs (1 rep)</>}
+              </>
+            ) : (
+              <>{exercise.muscle}</>
+            )}
+          </p>
         </div>
 
         <div className="workout-exercise__header-close">

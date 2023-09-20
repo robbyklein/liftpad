@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import axios from 'axios'
 import { api_routes } from '../constants'
-import { IExercise, IWorkout, IWorkoutWithNested } from '../types'
+import { IExercise, IExerciseWithMaxes, IMax, IWorkout, IWorkoutWithNested } from '../types'
 import arrayToMapById from '../helpers/arrayToMapById'
 import createTimestamp from '../helpers/createTimestamp'
 
@@ -9,7 +9,7 @@ type Store = {
   ready: boolean
   workout: IWorkoutWithNested
   browserOpen: boolean
-  exercises: { [id: number]: IExercise }
+  exercises: { [id: number]: IExerciseWithMaxes }
   setBrowserOpen(browserOpen: boolean): void
   changeField(key: string, value: string): void
   init(id?: number): void
@@ -26,6 +26,7 @@ type Store = {
   ): void
   save(): void
   destroy(): void
+  addMaxesToExercises(maxes: IMax[]): void
 }
 
 const emptyWorkout = {
@@ -56,6 +57,11 @@ export const workoutBuilderStore = create<Store>((set, get) => ({
       const res = await axios.get(api_routes.workouts_show(id))
       const { exercises, workout } = res.data
       set({ ready: true, workout, exercises: arrayToMapById(exercises) })
+
+      // Get maxes but no rush
+      const exerciseIds = exercises.map((e: IExercise) => e.id)
+      const maxes = await axios.post(api_routes.exercise_maxes, { exerciseIds })
+      get().addMaxesToExercises(maxes.data)
     } else {
       set({ ready: true })
     }
@@ -78,7 +84,7 @@ export const workoutBuilderStore = create<Store>((set, get) => ({
     set({ browserOpen })
   },
 
-  addExercise(exercise) {
+  addExercise: async (exercise) => {
     set((state) => {
       return {
         exercises: {
@@ -97,6 +103,11 @@ export const workoutBuilderStore = create<Store>((set, get) => ({
         },
       }
     })
+
+    const res = await axios.post(api_routes.exercise_maxes, { exerciseIds: [exercise.id] })
+    get().addMaxesToExercises(res.data)
+
+    console.log(res)
   },
 
   removeExercise: (exerciseIndex) => {
@@ -173,6 +184,25 @@ export const workoutBuilderStore = create<Store>((set, get) => ({
     if (workout.id) {
       await axios.delete(api_routes.workouts_edit(workout.id))
     }
+  },
+
+  addMaxesToExercises(maxes) {
+    const { exercises } = get()
+
+    for (let i = 0; i < maxes.length; i++) {
+      const max = maxes[i]
+
+      if (exercises[max.id]) {
+        exercises[max.id] = {
+          ...exercises[max.id],
+          ...max,
+        }
+      }
+
+      set({ exercises })
+    }
+
+    console.log(maxes)
   },
 }))
 

@@ -27818,6 +27818,7 @@
     workouts_edit: (id) => `/api/workouts/${id}`,
     workouts_delete: (id) => `/api/workouts/${id}`,
     workouts_create: `/api/workouts`,
+    exercise_maxes: `/api/exercises/max`,
     exercises_index: "/api/exercises"
   };
 
@@ -28375,6 +28376,9 @@
         const res = await axios_default.get(api_routes.workouts_show(id));
         const { exercises, workout } = res.data;
         set({ ready: true, workout, exercises: arrayToMapById(exercises) });
+        const exerciseIds = exercises.map((e) => e.id);
+        const maxes = await axios_default.post(api_routes.exercise_maxes, { exerciseIds });
+        get().addMaxesToExercises(maxes.data);
       } else {
         set({ ready: true });
       }
@@ -28393,7 +28397,7 @@
     setBrowserOpen(browserOpen) {
       set({ browserOpen });
     },
-    addExercise(exercise) {
+    addExercise: async (exercise) => {
       set((state) => {
         return {
           exercises: {
@@ -28412,6 +28416,9 @@
           }
         };
       });
+      const res = await axios_default.post(api_routes.exercise_maxes, { exerciseIds: [exercise.id] });
+      get().addMaxesToExercises(res.data);
+      console.log(res);
     },
     removeExercise: (exerciseIndex) => {
       set((state) => {
@@ -28475,6 +28482,20 @@
       if (workout.id) {
         await axios_default.delete(api_routes.workouts_edit(workout.id));
       }
+    },
+    addMaxesToExercises(maxes) {
+      const { exercises } = get();
+      for (let i = 0; i < maxes.length; i++) {
+        const max = maxes[i];
+        if (exercises[max.id]) {
+          exercises[max.id] = {
+            ...exercises[max.id],
+            ...max
+          };
+        }
+        set({ exercises });
+      }
+      console.log(maxes);
     }
   }));
   var workoutBuilderStore_default = workoutBuilderStore;
@@ -28667,7 +28688,7 @@
       const { value, name } = e.target;
       s.changeSetField(index, i, name, value);
     };
-    return /* @__PURE__ */ import_react26.default.createElement("div", { className: "workout-exercise" }, /* @__PURE__ */ import_react26.default.createElement("header", { className: "workout-exercise__header" }, /* @__PURE__ */ import_react26.default.createElement("div", { className: "workout-exercise__header-image" }, /* @__PURE__ */ import_react26.default.createElement("img", { src: exercise.imageStart })), /* @__PURE__ */ import_react26.default.createElement("div", { className: "workout-exercise__header-text" }, /* @__PURE__ */ import_react26.default.createElement("h3", null, exercise.title), /* @__PURE__ */ import_react26.default.createElement("p", null, exercise.muscle)), /* @__PURE__ */ import_react26.default.createElement("div", { className: "workout-exercise__header-close" }, /* @__PURE__ */ import_react26.default.createElement("button", { onClick: () => s.removeExercise(index) }, /* @__PURE__ */ import_react26.default.createElement(XIcon, null)))), /* @__PURE__ */ import_react26.default.createElement("div", { className: "workout-exercise__body" }, workoutExercise.sets.map((set, i) => {
+    return /* @__PURE__ */ import_react26.default.createElement("div", { className: "workout-exercise" }, /* @__PURE__ */ import_react26.default.createElement("header", { className: "workout-exercise__header" }, /* @__PURE__ */ import_react26.default.createElement("div", { className: "workout-exercise__header-image" }, /* @__PURE__ */ import_react26.default.createElement("img", { src: exercise.imageStart })), /* @__PURE__ */ import_react26.default.createElement("div", { className: "workout-exercise__header-text" }, /* @__PURE__ */ import_react26.default.createElement("h3", null, exercise.title), /* @__PURE__ */ import_react26.default.createElement("p", null, exercise.maxfor1 || exercise.maxfor8 ? /* @__PURE__ */ import_react26.default.createElement(import_react26.default.Fragment, null, /* @__PURE__ */ import_react26.default.createElement("strong", null, "Max: "), exercise.maxfor8 && /* @__PURE__ */ import_react26.default.createElement(import_react26.default.Fragment, null, exercise.maxfor8, "lbs (8 rep)"), exercise.maxfor1 && exercise.maxfor8 && /* @__PURE__ */ import_react26.default.createElement(import_react26.default.Fragment, null, " / "), exercise.maxfor1 && /* @__PURE__ */ import_react26.default.createElement(import_react26.default.Fragment, null, exercise.maxfor1, "lbs (1 rep)")) : /* @__PURE__ */ import_react26.default.createElement(import_react26.default.Fragment, null, exercise.muscle))), /* @__PURE__ */ import_react26.default.createElement("div", { className: "workout-exercise__header-close" }, /* @__PURE__ */ import_react26.default.createElement("button", { onClick: () => s.removeExercise(index) }, /* @__PURE__ */ import_react26.default.createElement(XIcon, null)))), /* @__PURE__ */ import_react26.default.createElement("div", { className: "workout-exercise__body" }, workoutExercise.sets.map((set, i) => {
       return /* @__PURE__ */ import_react26.default.createElement("div", { key: i, className: "workout-exercise__set" }, /* @__PURE__ */ import_react26.default.createElement("h4", null, "SET #", i + 1), /* @__PURE__ */ import_react26.default.createElement("div", { className: "workout-exercise__set-flex" }, /* @__PURE__ */ import_react26.default.createElement(
         "select",
         {
@@ -28705,7 +28726,7 @@
       const newDate = new Date(e.target.value);
       changeField("performed", createTimestamp(newDate));
     };
-    return /* @__PURE__ */ import_react27.default.createElement("header", { className: "workout-builder-header" }, /* @__PURE__ */ import_react27.default.createElement("h2", null, id ? "New" : "Edit", " Workout"), /* @__PURE__ */ import_react27.default.createElement(
+    return /* @__PURE__ */ import_react27.default.createElement("header", { className: "workout-builder-header" }, /* @__PURE__ */ import_react27.default.createElement("h2", null, id ? "Edit" : "New", " Workout"), /* @__PURE__ */ import_react27.default.createElement(
       "input",
       {
         type: "date",

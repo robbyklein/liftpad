@@ -160,7 +160,7 @@ const index = async (requ: Request, res: Response, next: NextFunction) => {
                   ELSE 0
                 END AS streak_start,
                 CASE 
-                  WHEN next_day = performed - INTERVAL '1 day' THEN 1
+                  WHEN prev_day = performed - INTERVAL '1 day' THEN 1
                   ELSE 0
                 END AS is_consecutive
           FROM consecutive_days
